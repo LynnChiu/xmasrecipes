@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 5 · Soft Chocolate Maxi Cookies</title>
+<style>
+:root{--bg:#faf6f0;--card:#fff;--text:#2a2420;--muted:#7a6f66;--accent:#b3261e;--green:#2f5d3a;--line:#e8dfd3;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+.tag{font:600 12px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:2rem;margin:.4rem 0 .2rem;line-height:1.15}
+.sub{color:var(--muted);margin:0 0 1rem}
+.meta{display:flex;gap:16px;font:14px system-ui,sans-serif;color:var(--muted);margin-bottom:18px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
+h2{font-size:1.2rem;margin:0 0 10px}
+h3{font:600 12px system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin:14px 0 6px}
+.srv{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:system-ui,sans-serif}
+.stepper{display:flex;align-items:center;gap:8px}
+.stepper button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:20px;cursor:pointer}
+.stepper input{width:64px;height:40px;text-align:center;font-size:18px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text)}
+ul{list-style:none;margin:0;padding:0}
+li.ing{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line)}
+li.ing:last-child{border:0}
+.amt{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+ol{list-style:none;counter-reset:s;margin:0;padding:0}
+ol li{counter-increment:s;position:relative;padding:0 0 16px 44px}
+ol li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font:700 14px/30px system-ui,sans-serif;text-align:center}
+ol li p{margin:0}
+.note{font:13px system-ui,sans-serif;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <div class="tag" id="tag"></div>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <div class="meta" id="meta"></div>
+  <section class="srv">
+    <strong id="lbl">Servings</strong>
+    <div class="stepper">
+      <button id="minus" aria-label="Decrease">−</button>
+      <input id="n" type="number" min="1" max="200" inputmode="numeric">
+      <button id="plus" aria-label="Increase">+</button>
+    </div>
+  </section>
+  <section><h2>Ingredients</h2><div id="ings"></div><p class="note" id="scalenote"></p></section>
+  <section><h2>Method</h2><ol id="steps"></ol></section>
+  <p class="note" id="foot"></p>
+</main>
+<script>
+var R={"tag": "Day 5 · Dessert", "title": "Soft Chocolate Maxi Cookies", "sub": "Big, bakery-style double chocolate cookies with soft centers and pockets of melted chocolate.", "meta": ["Prep 15 min", "Bake 10–12 min"], "label": "Makes (maxi cookies)", "base": 8, "step": 4, "groups": [["Dry", [["All-purpose flour (Weizenmehl Type 405)", 125, "g"], ["Powdered sugar (Puderzucker)", 110, "g"], ["Unsweetened cocoa powder (Backkakao)", 25, "g"], ["Baking powder", 0.75, "tsp"], ["Fine salt", 0.25, "tsp"]]], ["Wet", [["Butter, melted and cooled", 75, "g"], ["Egg", 1, "piece"]]], ["Mix-in", [["Dark chocolate, 50–70% cocoa, a mix of bars, roughly chopped", 100, "g"]]]], "steps": ["Preheat the oven to 190°C / 375°F with fan (Umluft), or 210°C / 410°F top-and-bottom heat (Ober-/Unterhitze), and line a baking tray with parchment. Melt the butter and let it cool for about 5 minutes, until it is warm but not hot, so it doesn’t scramble the egg.", "Sift the flour, powdered sugar, cocoa powder, baking powder and salt into a large bowl and whisk for about 30 seconds, until the color is an even brown with no lumps.", "Pour in the melted butter and add the egg. Mix with a spatula for about 1 minute, until the dough is thick and comes together with no dry flour left. It will look like a stiff, fudgy dough.", "Fold in the chopped chocolate, saving a few pieces to press on top.", "Divide the dough into 8 balls of about 60 g each. Place them on the tray, no more than 4 per tray and about 8 cm / 3 in apart, because maxi cookies spread. Press each ball down slightly and push the saved chocolate pieces onto the tops.", "Bake for 10–12 minutes, until the edges are set and the centers still look soft and slightly underdone. Bake closer to 10 minutes for fudgy centers or 12 minutes for crisper cookies. They will be very soft when they come out, and that is normal.", "Let the cookies cool on the tray for 10 minutes, until they firm up, then move them to a rack. They are best eaten warm on the same day."], "foot": "Rebuilt from the ingredient list of a French maxi cookie mix: base amounts are for 8 cookies (about 475 g of dough). If your butter is salted, leave out the salt. Whole eggs are rounded to the nearest whole egg.", "scalenote": "Bake in batches of 4 cookies per tray, so they have room to spread."};
+function fmt(x){
+  if(x>=10) return String(Math.round(x));
+  var r=Math.round(x*4)/4,w=Math.floor(r),f=r-w,fr={0:"",0.25:"¼",0.5:"½",0.75:"¾"}[f];
+  if(w===0&&fr==="") return "a pinch";
+  return (w?w:"")+fr;
+}
+function amt(v,u){
+  if(u==="g") return v>=1000?(Math.round(v/10)/100)+" kg":Math.round(v)+" g";
+  if(u==="ml") return v>=1000?(Math.round(v/10)/100)+" L":Math.round(v/5)*5+" ml";
+  if(u==="tbsp") return v>=8?(Math.round(v/16*4)/4)+" cup":fmt(v)+" tbsp";
+  if(u==="tsp") return v>=3?fmt(v/3)+" tbsp":fmt(v)+" tsp";
+  if(u==="piece") return String(Math.max(1,Math.round(v)));
+  if(u==="cup") return fmt(v)+(v>1?" cups":" cup");
+  return fmt(v)+" "+u;
+}
+var $=function(i){return document.getElementById(i)};
+$("tag").textContent=R.tag;$("title").textContent=R.title;$("sub").textContent=R.sub;
+$("meta").innerHTML=R.meta.map(function(m){return "<span>"+m+"</span>"}).join("");
+$("lbl").textContent=R.label;$("n").value=R.base;
+$("steps").innerHTML=R.steps.map(function(s){return "<li><p>"+s+"</p></li>"}).join("");
+$("foot").textContent=R.foot||"";
+function render(){
+  var n=parseInt($("n").value,10);if(!n||n<1)n=1;if(n>200)n=200;
+  var k=n/R.base;
+  $("ings").innerHTML=R.groups.map(function(g){
+    return "<h3>"+g[0]+"</h3><ul>"+g[1].map(function(i){
+      return '<li class="ing"><span>'+i[0]+'</span><span class="amt">'+amt(i[1]*k,i[2])+"</span></li>"}).join("")+"</ul>";
+  }).join("");
+  $("scalenote").textContent=(R.scalenote&&n>R.base)?R.scalenote:"";
+}
+$("minus").onclick=function(){$("n").value=Math.max(1,(parseInt($("n").value,10)||R.base)-R.step);render()};
+$("plus").onclick=function(){$("n").value=Math.min(200,(parseInt($("n").value,10)||R.base)+R.step);render()};
+$("n").oninput=render;render();
+</script>
+</body>
+</html>

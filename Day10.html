@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 10 · Green Beans with Taiwanese Meat Sauce</title>
+<style>
+:root{--bg:#faf6f0;--card:#fff;--text:#2a2420;--muted:#7a6f66;--accent:#b3261e;--green:#2f5d3a;--line:#e8dfd3;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+.tag{font:600 12px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:2rem;margin:.4rem 0 .2rem;line-height:1.15}
+.sub{color:var(--muted);margin:0 0 1rem}
+.meta{display:flex;gap:16px;font:14px system-ui,sans-serif;color:var(--muted);margin-bottom:18px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
+h2{font-size:1.2rem;margin:0 0 10px}
+h3{font:600 12px system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin:14px 0 6px}
+.srv{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:system-ui,sans-serif}
+.stepper{display:flex;align-items:center;gap:8px}
+.stepper button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:20px;cursor:pointer}
+.stepper input{width:64px;height:40px;text-align:center;font-size:18px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text)}
+ul{list-style:none;margin:0;padding:0}
+li.ing{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line)}
+li.ing:last-child{border:0}
+.amt{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+ol{list-style:none;counter-reset:s;margin:0;padding:0}
+ol li{counter-increment:s;position:relative;padding:0 0 16px 44px}
+ol li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font:700 14px/30px system-ui,sans-serif;text-align:center}
+ol li p{margin:0}
+.note{font:13px system-ui,sans-serif;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <div class="tag" id="tag"></div>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <div class="meta" id="meta"></div>
+  <section class="srv">
+    <strong id="lbl">Servings</strong>
+    <div class="stepper">
+      <button id="minus" aria-label="Decrease">−</button>
+      <input id="n" type="number" min="1" max="200" inputmode="numeric">
+      <button id="plus" aria-label="Increase">+</button>
+    </div>
+  </section>
+  <section><h2>Ingredients</h2><div id="ings"></div><p class="note" id="scalenote"></p></section>
+  <section><h2>Method</h2><ol id="steps"></ol></section>
+  <p class="note" id="foot"></p>
+</main>
+<script>
+var R={"tag": "Day 10 · Taiwanese", "title": "Green Beans with Taiwanese Meat Sauce", "sub": "A savory-sweet Taiwanese braised mince (rou zao) with ginger, garlic and onion, tossed with wrinkly, blistered green beans.", "meta": ["Prep 15 min", "Cook 35 min"], "label": "Servings", "base": 4, "step": 2, "groups": [["Meat sauce", [["Ground beef (or ground chicken thigh)", 400, "g"], ["Neutral oil (use the full amount for lean chicken, less is fine for beef)", 1, "tbsp"], ["Ginger, finely minced", 15, "g"], ["Garlic cloves, finely minced", 4, "piece"], ["Yellow onion, finely diced", 120, "g"], ["Rice wine or Shaoxing wine", 3, "tbsp"], ["Crispy fried onions (Röstzwiebeln), optional", 20, "g"]]], ["Sauce", [["Soy sauce", 2, "tbsp"], ["Oyster sauce", 1.5, "tbsp"], ["Sugar", 1.5, "tbsp"], ["White pepper", 0.5, "tsp"], ["Black pepper", 0.25, "tsp"], ["Water", 150, "ml"]]], ["Green beans", [["Green beans, ends trimmed and snapped in half", 300, "g"], ["Neutral oil", 1, "tbsp"], ["Salt", 0.25, "tsp"]]]], "steps": ["Mince the ginger and garlic very finely, and dice the onion finely. Trim the green beans and snap them in half. In a small bowl, stir the soy sauce, oyster sauce, sugar, white pepper, black pepper and water together until the sugar dissolves.", "Put the mince in a cold, wide pan or wok (add the oil first if you’re using lean chicken). Turn the heat to medium and press the meat into an even layer. Cook for 6–8 minutes without stirring much, until the fat has melted out and pools in the pan and the underside is browned. Then break the meat into small crumbles and cook for 3–4 minutes, until no pink is left and the crumbles are deeply browned, with brown bits stuck to the bottom of the pan.", "Add the ginger and garlic and stir for about 1 minute, until fragrant and the raw smell is gone. Add the onion and cook for 3–4 minutes, until soft and light golden.", "Pour the rice wine around the edge of the pan so it sizzles. Stir for about 1 minute, scraping up the brown bits, until the sharp smell of alcohol is gone. This removes any gamey smell from the meat.", "Add the sauce mixture and bring to a simmer. Turn the heat to medium-low and cook uncovered for 12–15 minutes, stirring now and then, until the sauce has reduced to a thick, glossy coating on the meat with only a little liquid left at the bottom. If you’re using the crispy fried onions, stir them in for the last 2 minutes.", "While the meat sauce simmers, heat the second tablespoon of oil in a separate large pan over medium-high heat. Add the green beans and stir-fry for 8–10 minutes, stirring every minute or so, until the skin is wrinkled and blistered with brown spots and the beans are soft all the way through. Sprinkle with the salt.", "Add the beans to the meat sauce and toss for 1–2 minutes, until every bean is coated. Taste, and add a splash of soy sauce if it needs more salt. Serve hot over rice."], "foot": "Base amounts are for 4 servings (one 400 g pack of mince). The meat sauce keeps well, and the flavor is even better the next day. It also freezes well, so a big batch is a good idea.", "scalenote": "For more than 8 servings, cook the meat and the green beans in batches so they brown instead of steaming."};
+function fmt(x){
+  if(x>=10) return String(Math.round(x));
+  var r=Math.round(x*4)/4,w=Math.floor(r),f=r-w,fr={0:"",0.25:"¼",0.5:"½",0.75:"¾"}[f];
+  if(w===0&&fr==="") return "a pinch";
+  return (w?w:"")+fr;
+}
+function amt(v,u){
+  if(u==="g") return v>=1000?(Math.round(v/10)/100)+" kg":Math.round(v)+" g";
+  if(u==="ml") return v>=1000?(Math.round(v/10)/100)+" L":Math.round(v/5)*5+" ml";
+  if(u==="tbsp") return v>=8?(Math.round(v/16*4)/4)+" cup":fmt(v)+" tbsp";
+  if(u==="tsp") return v>=3?fmt(v/3)+" tbsp":fmt(v)+" tsp";
+  if(u==="piece") return String(Math.max(1,Math.round(v)));
+  if(u==="cup") return fmt(v)+(v>1?" cups":" cup");
+  return fmt(v)+" "+u;
+}
+var $=function(i){return document.getElementById(i)};
+$("tag").textContent=R.tag;$("title").textContent=R.title;$("sub").textContent=R.sub;
+$("meta").innerHTML=R.meta.map(function(m){return "<span>"+m+"</span>"}).join("");
+$("lbl").textContent=R.label;$("n").value=R.base;
+$("steps").innerHTML=R.steps.map(function(s){return "<li><p>"+s+"</p></li>"}).join("");
+$("foot").textContent=R.foot||"";
+function render(){
+  var n=parseInt($("n").value,10);if(!n||n<1)n=1;if(n>200)n=200;
+  var k=n/R.base;
+  $("ings").innerHTML=R.groups.map(function(g){
+    return "<h3>"+g[0]+"</h3><ul>"+g[1].map(function(i){
+      return '<li class="ing"><span>'+i[0]+'</span><span class="amt">'+amt(i[1]*k,i[2])+"</span></li>"}).join("")+"</ul>";
+  }).join("");
+  $("scalenote").textContent=(R.scalenote&&n>R.base)?R.scalenote:"";
+}
+$("minus").onclick=function(){$("n").value=Math.max(1,(parseInt($("n").value,10)||R.base)-R.step);render()};
+$("plus").onclick=function(){$("n").value=Math.min(200,(parseInt($("n").value,10)||R.base)+R.step);render()};
+$("n").oninput=render;render();
+</script>
+</body>
+</html>

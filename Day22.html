@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 22 · Savory Quiche</title>
+<style>
+:root{--bg:#faf6f0;--card:#fff;--text:#2a2420;--muted:#7a6f66;--accent:#b3261e;--green:#2f5d3a;--line:#e8dfd3;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+.tag{font:600 12px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:2rem;margin:.4rem 0 .2rem;line-height:1.15}
+.sub{color:var(--muted);margin:0 0 1rem}
+.meta{display:flex;gap:16px;font:14px system-ui,sans-serif;color:var(--muted);margin-bottom:18px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
+h2{font-size:1.2rem;margin:0 0 10px}
+h3{font:600 12px system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin:14px 0 6px}
+.srv{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:system-ui,sans-serif}
+.stepper{display:flex;align-items:center;gap:8px}
+.stepper button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:20px;cursor:pointer}
+.stepper input{width:64px;height:40px;text-align:center;font-size:18px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text)}
+ul{list-style:none;margin:0;padding:0}
+li.ing{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line)}
+li.ing:last-child{border:0}
+.amt{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+ol{list-style:none;counter-reset:s;margin:0;padding:0}
+ol li{counter-increment:s;position:relative;padding:0 0 16px 44px}
+ol li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font:700 14px/30px system-ui,sans-serif;text-align:center}
+ol li p{margin:0}
+.tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.tabs button{flex:1;min-width:140px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);font:600 15px system-ui,sans-serif;cursor:pointer}.tabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.note{font:13px system-ui,sans-serif;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <div class="tag" id="tag"></div>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <div class="meta" id="meta"></div>
+  <section class="srv">
+    <strong id="lbl">Servings</strong>
+    <div class="stepper">
+      <button id="minus" aria-label="Decrease">−</button>
+      <input id="n" type="number" min="1" max="200" inputmode="numeric">
+      <button id="plus" aria-label="Increase">+</button>
+    </div>
+  </section>
+  <div class="tabs" id="tabs"></div>
+  <section><h2>Ingredients</h2><div id="ings"></div><p class="note" id="scalenote"></p></section>
+  <section><h2>Method</h2><ol id="steps"></ol></section>
+  <p class="note" id="foot"></p>
+</main>
+<script>
+var R={"tag": "Day 22 · Savory Pie", "title": "Savory Quiche, Two Flavors", "sub": "A buttery homemade crust filled with a light, creamy egg custard. Choose bacon and spinach, or salmon and potato.", "meta": ["Prep 45 min + 45 min chilling", "Bake 55 min"], "label": "Makes (25 cm quiches)", "base": 1, "step": 1, "groups": [["Crust", [["All-purpose flour (Weizenmehl Type 405)", 220, "g"], ["Unsalted butter, cold, cut into small cubes", 110, "g"], ["Egg yolk", 1, "piece"], ["Fine salt", 0.5, "tsp"], ["Cold water", 3, "tbsp"]]], ["Custard (shared)", [["Eggs", 4, "piece"], ["Heavy cream (Schlagsahne)", 100, "ml"], ["Milk", 250, "ml"], ["Finely grated Parmesan", 10, "g"], ["Shredded pizza cheese (Pizzakäse)", 50, "g"]]]], "stepsBefore": ["Put the flour and salt in a large bowl and add the cold butter. Rub the butter into the flour with your fingertips for 3–5 minutes, until the mixture looks like coarse crumbs with pea-size pieces of butter. Mix the egg yolk with the cold water, pour it in, and mix with a fork, then with your hand, until the dough just clumps together. Press it into a disk, wrap it, and chill it in the fridge for 30 minutes, until firm.", "Preheat the oven to 190°C top-and-bottom heat (Ober-/Unterhitze), or 170°C with fan (Umluft). Roll the dough out on a floured surface, to a circle about 32 cm across and 3 mm thick. Lift it into a 25 cm pie pan, press it into the corners and up the sides, and trim the edge. Prick the base all over with a fork. Chill the lined pan in the fridge for 15–20 minutes, until firm, so the crust shrinks less.", "Cover the dough with a sheet of crumpled baking paper and fill it with dry rice, dried beans or lentils to weigh it down. Bake for 15 minutes, until the edges are pale golden. Lift out the paper and rice (keep the rice for next time, as it can be reused for baking), then bake for another 5 minutes, until the base looks dry and lightly golden. Lower the oven to 180°C top-and-bottom heat, or 160°C with fan."], "stepsAfter": ["Scatter the filling evenly over the baked crust and sprinkle the pizza cheese over the top. Whisk the eggs, cream, milk and Parmesan together until smooth. For the salmon and potato quiche, whisk in the salt as well. Pour the custard slowly over the filling, up to about 5 mm below the rim of the crust.", "Bake for 30–35 minutes, until the edges of the custard are set, the center wobbles only slightly when you shake the pan, and the top is lightly golden. If the top browns too fast, cover loosely with foil.", "Let the quiche rest in the pan for 15 minutes before slicing, so the custard finishes setting and slices cleanly. Serve warm or at room temperature."], "variants": [{"name": "Bacon & Spinach", "groups": [["Bacon & spinach filling", [["Bacon, mild and not too salty, cut into 1 cm pieces", 150, "g"], ["Yellow onion, finely diced", 100, "g"], ["Butter", 10, "g"], ["Fresh spinach (Blattspinat), or 150 g thawed frozen spinach", 200, "g"], ["Black pepper", 0.5, "tsp"]]]], "steps": ["Put the bacon in a cold, dry pan and cook over medium heat for 6–8 minutes, stirring now and then, until the fat has melted out and the pieces are crisp at the edges. Lift the bacon out with a slotted spoon onto paper towels. Pour off the bacon fat, leaving only about 1 teaspoon in the pan, to keep the quiche from being greasy. If your bacon is very salty, you can first pour boiling water over the pieces for 1 minute, then drain and pat dry before frying.", "Add the butter and onion to the pan and cook for 5–6 minutes, until soft and translucent. Add the spinach and stir for 1–2 minutes, until fully wilted. Tip everything onto a plate and let it cool for 10 minutes, then press out the liquid with the back of a spoon until the spinach feels damp, not wet. Stir in the bacon and the pepper. Do not add salt, because the bacon and Parmesan are already salty."]}, {"name": "Salmon & Potato", "groups": [["Salmon & potato filling", [["Skinless salmon fillet, cut into 2 cm chunks", 200, "g"], ["Waxy potatoes (festkochende Kartoffeln), cut into 1 cm cubes", 200, "g"], ["Yellow onion, finely diced", 100, "g"], ["Butter", 10, "g"], ["Black pepper", 0.5, "tsp"], ["Salt, for the custard", 0.5, "tsp"]]]], "steps": ["If the salmon is frozen, thaw it overnight in the fridge. Cut it into 2 cm chunks and put them in a sieve in the sink. Pour a kettle of boiling water over them and leave for 30 seconds, until the outside turns pale. Rinse under cold water and pat dry. Boil the potato cubes in lightly salted water for 6–8 minutes, until a fork slides in easily but the cubes hold their shape. Drain and let them steam dry for 2 minutes.", "Melt the butter in a pan over medium heat, add the onion, and cook for 5–6 minutes, until soft and translucent. Add the salmon and cook for 2–3 minutes, stirring gently, until the outside is pale (the inside will finish cooking in the oven). Tip everything onto a plate and let it cool for 10 minutes. Gently stir in the potatoes and the pepper."]}], "foot": "Base amounts are for one 25 cm quiche, which makes about 8 slices. The cheese is kept light, so the quiche is not greasy. Bacon and Parmesan are both salty, so taste your bacon first and use the mildest one you can find.", "scalenote": "Each 25 cm pan holds one quiche. For more, bake them in separate pans, or in two batches."};
+function fmt(x){
+  if(x>=10) return String(Math.round(x));
+  var r=Math.round(x*4)/4,w=Math.floor(r),f=r-w,fr={0:"",0.25:"¼",0.5:"½",0.75:"¾"}[f];
+  if(w===0&&fr==="") return "a pinch";
+  return (w?w:"")+fr;
+}
+function amt(v,u){
+  if(u==="g") return v>=1000?(Math.round(v/10)/100)+" kg":Math.round(v)+" g";
+  if(u==="ml") return v>=1000?(Math.round(v/10)/100)+" L":Math.round(v/5)*5+" ml";
+  if(u==="tbsp") return v>=8?(Math.round(v/16*4)/4)+" cup":fmt(v)+" tbsp";
+  if(u==="tsp") return v>=3?fmt(v/3)+" tbsp":fmt(v)+" tsp";
+  if(u==="piece") return String(Math.max(1,Math.round(v)));
+  if(u==="cup") return fmt(v)+(v>1?" cups":" cup");
+  return fmt(v)+" "+u;
+}
+var $=function(i){return document.getElementById(i)};
+var V=0;
+$("tag").textContent=R.tag;$("title").textContent=R.title;$("sub").textContent=R.sub;
+$("meta").innerHTML=R.meta.map(function(m){return "<span>"+m+"</span>"}).join("");
+$("lbl").textContent=R.label;$("n").value=R.base;
+$("foot").textContent=R.foot||"";
+function drawTabs(){
+  $("tabs").innerHTML=R.variants.map(function(v,i){return '<button data-i="'+i+'" class="'+(i===V?"on":"")+'">'+v.name+'</button>'}).join("");
+  var bs=$("tabs").getElementsByTagName("button");
+  for(var i=0;i<bs.length;i++){bs[i].onclick=function(){V=parseInt(this.getAttribute("data-i"),10);drawTabs();render()}}
+}
+function render(){
+  var n=parseInt($("n").value,10);if(!n||n<1)n=1;if(n>200)n=200;
+  var k=n/R.base,vr=R.variants[V];
+  var groups=R.groups.concat(vr.groups);
+  $("ings").innerHTML=groups.map(function(g){
+    return "<h3>"+g[0]+"</h3><ul>"+g[1].map(function(i){
+      return '<li class="ing"><span>'+i[0]+'</span><span class="amt">'+amt(i[1]*k,i[2])+"</span></li>"}).join("")+"</ul>";
+  }).join("");
+  var steps=R.stepsBefore.concat(vr.steps,R.stepsAfter);
+  $("steps").innerHTML=steps.map(function(s){return "<li><p>"+s+"</p></li>"}).join("");
+  $("scalenote").textContent=(R.scalenote&&n>R.base)?R.scalenote:"";
+}
+$("minus").onclick=function(){$("n").value=Math.max(1,(parseInt($("n").value,10)||R.base)-R.step);render()};
+$("plus").onclick=function(){$("n").value=Math.min(200,(parseInt($("n").value,10)||R.base)+R.step);render()};
+$("n").oninput=render;drawTabs();render();
+</script>
+</body>
+</html>

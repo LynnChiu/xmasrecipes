@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 2 · Bacon & Corn Chowder</title>
+<style>
+:root{--bg:#faf6f0;--card:#fff;--text:#2a2420;--muted:#7a6f66;--accent:#b3261e;--green:#2f5d3a;--line:#e8dfd3;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+.tag{font:600 12px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:2rem;margin:.4rem 0 .2rem;line-height:1.15}
+.sub{color:var(--muted);margin:0 0 1rem}
+.meta{display:flex;gap:16px;font:14px system-ui,sans-serif;color:var(--muted);margin-bottom:18px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
+h2{font-size:1.2rem;margin:0 0 10px}
+h3{font:600 12px system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin:14px 0 6px}
+.srv{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:system-ui,sans-serif}
+.stepper{display:flex;align-items:center;gap:8px}
+.stepper button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:20px;cursor:pointer}
+.stepper input{width:64px;height:40px;text-align:center;font-size:18px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text)}
+ul{list-style:none;margin:0;padding:0}
+li.ing{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line)}
+li.ing:last-child{border:0}
+.amt{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+ol{list-style:none;counter-reset:s;margin:0;padding:0}
+ol li{counter-increment:s;position:relative;padding:0 0 16px 44px}
+ol li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font:700 14px/30px system-ui,sans-serif;text-align:center}
+ol li p{margin:0}
+.note{font:13px system-ui,sans-serif;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <div class="tag" id="tag"></div>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <div class="meta" id="meta"></div>
+  <section class="srv">
+    <strong id="lbl">Servings</strong>
+    <div class="stepper">
+      <button id="minus" aria-label="Decrease">−</button>
+      <input id="n" type="number" min="1" max="200" inputmode="numeric">
+      <button id="plus" aria-label="Increase">+</button>
+    </div>
+  </section>
+  <section><h2>Ingredients</h2><div id="ings"></div><p class="note" id="scalenote"></p></section>
+  <section><h2>Method</h2><ol id="steps"></ol></section>
+  <p class="note" id="foot"></p>
+</main>
+<script>
+var R={"tag": "Day 2 · Soup", "title": "Bacon & Corn Chowder", "sub": "Smoky bacon, sweet corn and very soft onions in a thick, gently creamy soup.", "meta": ["Prep 15 min", "Cook 45 min"], "label": "Servings (bowls)", "base": 4, "step": 2, "groups": [["Base", [["Bacon, chopped into 1 cm pieces", 120, "g"], ["Onions, finely diced", 250, "g"], ["Potatoes, diced into 1 cm cubes", 300, "g"]]], ["Corn", [["Canned corn kernels, drained", 200, "g"], ["Canned cream-style corn (corn purée)", 250, "g"]]], ["Liquid & seasoning", [["Water", 500, "ml"], ["Chicken or vegetable bouillon powder", 2, "tsp"], ["Milk", 250, "ml"], ["Grated cheddar", 40, "g"], ["Black pepper", 0.5, "tsp"]]]], "steps": ["Put the bacon in a cold pot and cook over medium heat for 6–8 minutes, stirring occasionally, until the bacon is crisp and the fat has melted out. Lift the bacon out with a slotted spoon and set it aside. Leave about 2 tablespoons of fat in the pot and pour off any extra.", "Add the onions to the bacon fat and cook over medium-low heat for 15–20 minutes, stirring every few minutes, until they are very soft, translucent and pale golden, and have shrunk to about a third of their original volume. Add a splash of water if they start to stick or brown. Don’t rush this step, because the onions give the soup its sweetness.", "Add the potatoes, water and bouillon powder. Bring to a boil, then turn the heat down, partly cover, and simmer for 12–15 minutes, until a piece of potato crushes easily against the side of the pot.", "Mash about a third of the potato against the side of the pot to thicken the soup. Stir in both the corn kernels and the cream-style corn and simmer for 5 minutes, until the soup is hot and thick enough to coat the back of a spoon.", "Turn the heat to low and stir in the milk. Heat gently for 3–4 minutes, until the soup is steaming but not boiling, because boiling can make milk curdle. Turn off the heat, add the cheese and stir for about 1 minute, until it has melted and the soup looks smooth.", "Add the black pepper and taste. Bacon and bouillon are both salty, so add salt only if it needs it. Stir in most of the bacon, then serve hot, topped with the rest of the bacon and a little extra black pepper."], "foot": "Prototype amounts: please adjust to your own recipe. The milk and cheese are kept moderate on purpose, and the cream-style corn gives most of the creaminess. Base amounts are for 4 servings.", "scalenote": "For larger batches, use a bigger pot and allow extra time for the onions to soften."};
+function fmt(x){
+  if(x>=10) return String(Math.round(x));
+  var r=Math.round(x*4)/4,w=Math.floor(r),f=r-w,fr={0:"",0.25:"¼",0.5:"½",0.75:"¾"}[f];
+  if(w===0&&fr==="") return "a pinch";
+  return (w?w:"")+fr;
+}
+function amt(v,u){
+  if(u==="g") return v>=1000?(Math.round(v/10)/100)+" kg":Math.round(v)+" g";
+  if(u==="ml") return v>=1000?(Math.round(v/10)/100)+" L":Math.round(v/5)*5+" ml";
+  if(u==="tbsp") return v>=8?(Math.round(v/16*4)/4)+" cup":fmt(v)+" tbsp";
+  if(u==="tsp") return v>=3?fmt(v/3)+" tbsp":fmt(v)+" tsp";
+  if(u==="piece") return String(Math.max(1,Math.round(v)));
+  if(u==="cup") return fmt(v)+(v>1?" cups":" cup");
+  return fmt(v)+" "+u;
+}
+var $=function(i){return document.getElementById(i)};
+$("tag").textContent=R.tag;$("title").textContent=R.title;$("sub").textContent=R.sub;
+$("meta").innerHTML=R.meta.map(function(m){return "<span>"+m+"</span>"}).join("");
+$("lbl").textContent=R.label;$("n").value=R.base;
+$("steps").innerHTML=R.steps.map(function(s){return "<li><p>"+s+"</p></li>"}).join("");
+$("foot").textContent=R.foot||"";
+function render(){
+  var n=parseInt($("n").value,10);if(!n||n<1)n=1;if(n>200)n=200;
+  var k=n/R.base;
+  $("ings").innerHTML=R.groups.map(function(g){
+    return "<h3>"+g[0]+"</h3><ul>"+g[1].map(function(i){
+      return '<li class="ing"><span>'+i[0]+'</span><span class="amt">'+amt(i[1]*k,i[2])+"</span></li>"}).join("")+"</ul>";
+  }).join("");
+  $("scalenote").textContent=(R.scalenote&&n>R.base)?R.scalenote:"";
+}
+$("minus").onclick=function(){$("n").value=Math.max(1,(parseInt($("n").value,10)||R.base)-R.step);render()};
+$("plus").onclick=function(){$("n").value=Math.min(200,(parseInt($("n").value,10)||R.base)+R.step);render()};
+$("n").oninput=render;render();
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 13 · Massaman Curry with Beef Shank</title>
+<style>
+:root{--bg:#faf6f0;--card:#fff;--text:#2a2420;--muted:#7a6f66;--accent:#b3261e;--green:#2f5d3a;--line:#e8dfd3;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+.tag{font:600 12px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:2rem;margin:.4rem 0 .2rem;line-height:1.15}
+.sub{color:var(--muted);margin:0 0 1rem}
+.meta{display:flex;gap:16px;font:14px system-ui,sans-serif;color:var(--muted);margin-bottom:18px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
+h2{font-size:1.2rem;margin:0 0 10px}
+h3{font:600 12px system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin:14px 0 6px}
+.srv{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:system-ui,sans-serif}
+.stepper{display:flex;align-items:center;gap:8px}
+.stepper button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:20px;cursor:pointer}
+.stepper input{width:64px;height:40px;text-align:center;font-size:18px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text)}
+ul{list-style:none;margin:0;padding:0}
+li.ing{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line)}
+li.ing:last-child{border:0}
+.amt{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+ol{list-style:none;counter-reset:s;margin:0;padding:0}
+ol li{counter-increment:s;position:relative;padding:0 0 16px 44px}
+ol li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font:700 14px/30px system-ui,sans-serif;text-align:center}
+ol li p{margin:0}
+.note{font:13px system-ui,sans-serif;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <div class="tag" id="tag"></div>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <div class="meta" id="meta"></div>
+  <section class="srv">
+    <strong id="lbl">Servings</strong>
+    <div class="stepper">
+      <button id="minus" aria-label="Decrease">−</button>
+      <input id="n" type="number" min="1" max="200" inputmode="numeric">
+      <button id="plus" aria-label="Increase">+</button>
+    </div>
+  </section>
+  <section><h2>Ingredients</h2><div id="ings"></div><p class="note" id="scalenote"></p></section>
+  <section><h2>Method</h2><ol id="steps"></ol></section>
+  <p class="note" id="foot"></p>
+</main>
+<script>
+var R={"tag": "Day 13 · Thai", "title": "Massaman Curry with Beef Shank", "sub": "Mild, rich and slightly sweet Thai curry with fall-apart beef shank, firm potatoes and crunchy peanuts, served with blanched broccoli on the side.", "meta": ["Prep 25 min", "Cook about 3 hours"], "label": "Servings", "base": 4, "step": 2, "groups": [["Curry", [["Bone-in beef shank slices (Rinderbeinscheiben), about 4 cm thick", 800, "g"], ["Massaman curry paste, store-bought (e.g. Maesri, Mae Ploy or Aroy-D)", 4, "tbsp"], ["Light coconut milk (leichte Kokosmilch, fettarm)", 400, "ml"], ["Water", 250, "ml"], ["Neutral oil", 1, "tbsp"], ["Fish sauce (Fischsauce)", 1.5, "tbsp"], ["Sugar, ideally palm sugar or brown sugar", 1, "tbsp"], ["Yellow onion, cut into thick wedges", 200, "g"], ["Waxy potatoes (festkochende Kartoffeln), peeled and cut into 4 cm chunks", 400, "g"]]], ["To serve", [["Unsalted peanuts (ungesalzene Erdnüsse)", 40, "g"], ["Broccoli florets, blanched separately", 300, "g"], ["Salt, for the blanching water", 1, "tsp"]]]], "steps": ["Trim off any large pieces of visible fat from the beef shank slices, then pat them dry with paper towels. Shake the can of coconut milk well, open it, and measure out 3 tablespoons into a small cup for frying the paste.", "Heat the oil in a large heavy pot over medium heat. Add the curry paste and the 3 tablespoons of coconut milk, and fry for 3–5 minutes, stirring constantly, until it smells strongly of spices and a little red oil separates around the edges of the paste. If the paste starts to stick, add another tablespoon of coconut milk.", "Add the beef and stir for 2–3 minutes, until every piece is coated in the paste. Pour in the rest of the coconut milk, the water, the fish sauce and the sugar. Stir well, and bring to a gentle boil.", "Turn the heat to low, partly cover the pot, and simmer for 2–2½ hours, stirring every 20–30 minutes, until the meat is so tender that a fork slides in with no resistance and the meat starts to pull away from the bone. If the liquid drops below the top of the beef, add a splash of hot water. Each time you stir, skim the layer of red oil off the surface with a large spoon and discard it, so the curry stays light.", "Add the onion and potatoes, pushing them down into the sauce. Simmer, partly covered, for 20–25 minutes, until a fork slides easily into a potato but the chunks still hold their shape. Waxy potatoes will stay firm and bouncy, while floury ones will fall apart.", "Toast the peanuts in a dry pan over medium heat for 3–4 minutes, shaking the pan often, until they are golden and smell nutty. Tip them onto a plate right away so they don’t burn.", "Bring a pot of water with the salt to a boil. Add the broccoli and cook for 2–3 minutes, until bright green and just tender, then drain well. Do not cook it in the curry.", "Skim off any oil still floating on the surface. Taste the curry, and add a little more fish sauce if it needs salt, or a little more sugar if you want it sweeter. Serve hot over rice, sprinkled with the peanuts, with the broccoli on the side to add and mix into the curry sauce as you eat."], "foot": "Base amounts are for 4 servings. Light coconut milk keeps the curry from getting greasy, so the sauce is lighter than the traditional version. For a richer curry, replace half of it with regular coconut milk and skim off more oil. Curry paste brands vary in strength, so if your packet recommends a different amount, follow it: start with 3 tablespoons and add more to taste. The curry tastes even better the next day.", "scalenote": "For more than 8 servings, use a very large pot. The beef needs the same cooking time."};
+function fmt(x){
+  if(x>=10) return String(Math.round(x));
+  var r=Math.round(x*4)/4,w=Math.floor(r),f=r-w,fr={0:"",0.25:"¼",0.5:"½",0.75:"¾"}[f];
+  if(w===0&&fr==="") return "a pinch";
+  return (w?w:"")+fr;
+}
+function amt(v,u){
+  if(u==="g") return v>=1000?(Math.round(v/10)/100)+" kg":Math.round(v)+" g";
+  if(u==="ml") return v>=1000?(Math.round(v/10)/100)+" L":Math.round(v/5)*5+" ml";
+  if(u==="tbsp") return v>=8?(Math.round(v/16*4)/4)+" cup":fmt(v)+" tbsp";
+  if(u==="tsp") return v>=3?fmt(v/3)+" tbsp":fmt(v)+" tsp";
+  if(u==="piece") return String(Math.max(1,Math.round(v)));
+  if(u==="cup") return fmt(v)+(v>1?" cups":" cup");
+  return fmt(v)+" "+u;
+}
+var $=function(i){return document.getElementById(i)};
+$("tag").textContent=R.tag;$("title").textContent=R.title;$("sub").textContent=R.sub;
+$("meta").innerHTML=R.meta.map(function(m){return "<span>"+m+"</span>"}).join("");
+$("lbl").textContent=R.label;$("n").value=R.base;
+$("steps").innerHTML=R.steps.map(function(s){return "<li><p>"+s+"</p></li>"}).join("");
+$("foot").textContent=R.foot||"";
+function render(){
+  var n=parseInt($("n").value,10);if(!n||n<1)n=1;if(n>200)n=200;
+  var k=n/R.base;
+  $("ings").innerHTML=R.groups.map(function(g){
+    return "<h3>"+g[0]+"</h3><ul>"+g[1].map(function(i){
+      return '<li class="ing"><span>'+i[0]+'</span><span class="amt">'+amt(i[1]*k,i[2])+"</span></li>"}).join("")+"</ul>";
+  }).join("");
+  $("scalenote").textContent=(R.scalenote&&n>R.base)?R.scalenote:"";
+}
+$("minus").onclick=function(){$("n").value=Math.max(1,(parseInt($("n").value,10)||R.base)-R.step);render()};
+$("plus").onclick=function(){$("n").value=Math.min(200,(parseInt($("n").value,10)||R.base)+R.step);render()};
+$("n").oninput=render;render();
+</script>
+</body>
+</html>

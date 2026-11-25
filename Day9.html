@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 9 · Tomato Beef Borscht</title>
+<style>
+:root{--bg:#faf6f0;--card:#fff;--text:#2a2420;--muted:#7a6f66;--accent:#b3261e;--green:#2f5d3a;--line:#e8dfd3;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+.tag{font:600 12px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:2rem;margin:.4rem 0 .2rem;line-height:1.15}
+.sub{color:var(--muted);margin:0 0 1rem}
+.meta{display:flex;gap:16px;font:14px system-ui,sans-serif;color:var(--muted);margin-bottom:18px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
+h2{font-size:1.2rem;margin:0 0 10px}
+h3{font:600 12px system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin:14px 0 6px}
+.srv{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:system-ui,sans-serif}
+.stepper{display:flex;align-items:center;gap:8px}
+.stepper button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:20px;cursor:pointer}
+.stepper input{width:64px;height:40px;text-align:center;font-size:18px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text)}
+ul{list-style:none;margin:0;padding:0}
+li.ing{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line)}
+li.ing:last-child{border:0}
+.amt{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+ol{list-style:none;counter-reset:s;margin:0;padding:0}
+ol li{counter-increment:s;position:relative;padding:0 0 16px 44px}
+ol li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font:700 14px/30px system-ui,sans-serif;text-align:center}
+ol li p{margin:0}
+.note{font:13px system-ui,sans-serif;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <div class="tag" id="tag"></div>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <div class="meta" id="meta"></div>
+  <section class="srv">
+    <strong id="lbl">Servings</strong>
+    <div class="stepper">
+      <button id="minus" aria-label="Decrease">−</button>
+      <input id="n" type="number" min="1" max="200" inputmode="numeric">
+      <button id="plus" aria-label="Increase">+</button>
+    </div>
+  </section>
+  <section><h2>Ingredients</h2><div id="ings"></div><p class="note" id="scalenote"></p></section>
+  <section><h2>Method</h2><ol id="steps"></ol></section>
+  <p class="note" id="foot"></p>
+</main>
+<script>
+var R={"tag": "Day 9 · Soup", "title": "Tomato Beef Borscht (Luo Song Tang)", "sub": "A big, rich, tomato-red beef and vegetable soup in the Hong Kong and Taiwanese style, with no beets, plenty of tomato and a long, slow simmer.", "meta": ["Prep 30 min", "Cook about 3 hours"], "label": "Servings", "base": 4, "step": 2, "groups": [["Beef", [["Beef brisket (Rinderbrust) or beef shank (Rinderhesse), cut into 3 cm chunks", 500, "g"], ["Water, for the soup", 1800, "ml"], ["Bay leaves (Lorbeerblätter)", 2, "piece"]]], ["Tomato base", [["Yellow onions, diced", 300, "g"], ["Fresh tomatoes, halved", 600, "g"], ["Tomato paste (Tomatenmark)", 4, "tbsp"], ["Neutral oil", 2, "tbsp"]]], ["Vegetables", [["Potatoes, diced 2 cm", 250, "g"], ["Carrots, diced 2 cm", 150, "g"], ["Sweet potato (Süßkartoffel), diced 2 cm", 150, "g"], ["Cabbage (Spitzkohl or Weißkohl), chopped into 2 cm pieces", 250, "g"]]], ["Seasoning", [["Salt", 1.5, "tsp"], ["Sugar", 1, "tbsp"], ["Black pepper", 0.5, "tsp"]]]], "steps": ["Bring a large pot of water to a boil. Add the beef and boil for 3–5 minutes, until grey foam and scum have risen to the top. Drain the beef in a colander and rinse it under running water to wash off the scum. Wash out the pot, because the foam leaves residue on the sides.", "Dice the onions, cut the tomatoes in half (the size doesn’t matter, because they will break down as they cook), and dice the potatoes, carrots and sweet potato. Chop the cabbage into 2 cm pieces. Keep the vegetables in separate piles, because they go into the pot at different times.", "Heat the oil in the clean pot over medium heat. Add the onions and cook for 8–10 minutes, stirring often, until they are soft, translucent and starting to turn light golden.", "Add the tomatoes and cook for 12–15 minutes, stirring and pressing them against the pot with the spoon to break them up, until they have collapsed, released all their juice, and turned into a thick, jammy sauce.", "Add the tomato paste and fry for 3–4 minutes, stirring constantly, until the color deepens from bright red to dark brick red and red oil starts to appear around the edges of the paste. Don’t skip this step, because it is where most of the flavor comes from.", "Add the blanched beef, the bay leaves and the water (hot water from a kettle keeps the pot from going off the boil). Bring to a boil, skim off any foam, then turn the heat to low, partly cover, and simmer for 1½–2 hours, stirring every 20–30 minutes, until a piece of beef splits apart easily when pressed with a spoon. If the liquid drops below the top of the beef, add some hot water.", "Add the potatoes, carrots and sweet potato. Simmer for 20–25 minutes, until a fork slides easily into a piece of potato and the edges of the potatoes have started to break down and thicken the soup.", "Add the cabbage and simmer for 10–15 minutes, until it is soft and sweet but still holds its shape. Stir in the salt, sugar and pepper, then taste. Add a little more salt if it tastes flat, or a little more sugar if it tastes too sour. Remove the bay leaves and serve hot."], "foot": "Base amounts are for 4 servings (about 2.5 L of soup). Like most tomato soups, it tastes even better the next day.", "scalenote": "For more than 8 servings, use a very large pot. The beef still needs the same simmering time."};
+function fmt(x){
+  if(x>=10) return String(Math.round(x));
+  var r=Math.round(x*4)/4,w=Math.floor(r),f=r-w,fr={0:"",0.25:"¼",0.5:"½",0.75:"¾"}[f];
+  if(w===0&&fr==="") return "a pinch";
+  return (w?w:"")+fr;
+}
+function amt(v,u){
+  if(u==="g") return v>=1000?(Math.round(v/10)/100)+" kg":Math.round(v)+" g";
+  if(u==="ml") return v>=1000?(Math.round(v/10)/100)+" L":Math.round(v/5)*5+" ml";
+  if(u==="tbsp") return v>=8?(Math.round(v/16*4)/4)+" cup":fmt(v)+" tbsp";
+  if(u==="tsp") return v>=3?fmt(v/3)+" tbsp":fmt(v)+" tsp";
+  if(u==="piece") return String(Math.max(1,Math.round(v)));
+  if(u==="cup") return fmt(v)+(v>1?" cups":" cup");
+  return fmt(v)+" "+u;
+}
+var $=function(i){return document.getElementById(i)};
+$("tag").textContent=R.tag;$("title").textContent=R.title;$("sub").textContent=R.sub;
+$("meta").innerHTML=R.meta.map(function(m){return "<span>"+m+"</span>"}).join("");
+$("lbl").textContent=R.label;$("n").value=R.base;
+$("steps").innerHTML=R.steps.map(function(s){return "<li><p>"+s+"</p></li>"}).join("");
+$("foot").textContent=R.foot||"";
+function render(){
+  var n=parseInt($("n").value,10);if(!n||n<1)n=1;if(n>200)n=200;
+  var k=n/R.base;
+  $("ings").innerHTML=R.groups.map(function(g){
+    return "<h3>"+g[0]+"</h3><ul>"+g[1].map(function(i){
+      return '<li class="ing"><span>'+i[0]+'</span><span class="amt">'+amt(i[1]*k,i[2])+"</span></li>"}).join("")+"</ul>";
+  }).join("");
+  $("scalenote").textContent=(R.scalenote&&n>R.base)?R.scalenote:"";
+}
+$("minus").onclick=function(){$("n").value=Math.max(1,(parseInt($("n").value,10)||R.base)-R.step);render()};
+$("plus").onclick=function(){$("n").value=Math.min(200,(parseInt($("n").value,10)||R.base)+R.step);render()};
+$("n").oninput=render;render();
+</script>
+</body>
+</html>
