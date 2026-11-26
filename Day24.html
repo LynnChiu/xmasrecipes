@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 24 · French Mille Crêpe Cake</title>
+<style>
+:root{--bg:#faf6f0;--card:#fff;--text:#2a2420;--muted:#7a6f66;--accent:#b3261e;--green:#2f5d3a;--line:#e8dfd3;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+.tag{font:600 12px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:2rem;margin:.4rem 0 .2rem;line-height:1.15}
+.sub{color:var(--muted);margin:0 0 1rem}
+.meta{display:flex;gap:16px;font:14px system-ui,sans-serif;color:var(--muted);margin-bottom:18px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
+h2{font-size:1.2rem;margin:0 0 10px}
+h3{font:600 12px system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin:14px 0 6px}
+.srv{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:system-ui,sans-serif}
+.stepper{display:flex;align-items:center;gap:8px}
+.stepper button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:20px;cursor:pointer}
+.stepper input{width:64px;height:40px;text-align:center;font-size:18px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text)}
+ul{list-style:none;margin:0;padding:0}
+li.ing{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line)}
+li.ing:last-child{border:0}
+.amt{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+ol{list-style:none;counter-reset:s;margin:0;padding:0}
+ol li{counter-increment:s;position:relative;padding:0 0 16px 44px}
+ol li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font:700 14px/30px system-ui,sans-serif;text-align:center}
+ol li p{margin:0}
+.note{font:13px system-ui,sans-serif;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <div class="tag" id="tag"></div>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <div class="meta" id="meta"></div>
+  <section class="srv">
+    <strong id="lbl">Servings</strong>
+    <div class="stepper">
+      <button id="minus" aria-label="Decrease">−</button>
+      <input id="n" type="number" min="1" max="200" inputmode="numeric">
+      <button id="plus" aria-label="Increase">+</button>
+    </div>
+  </section>
+  <section><h2>Ingredients</h2><div id="ings"></div><p class="note" id="scalenote"></p></section>
+  <section><h2>Method</h2><ol id="steps"></ol></section>
+  <p class="note" id="foot"></p>
+</main>
+<script>
+var R={"tag": "Day 24 · Dessert", "title": "French Mille Crêpe Cake", "sub": "Twenty paper-thin crêpes layered with lightly sweet whipped cream, no oven needed.", "meta": ["Prep 40 min + 1 h resting", "Cook 40 min + 3 h chilling"], "label": "Makes (cakes, 8–10 slices each)", "base": 1, "step": 1, "groups": [["Crêpes", [["All-purpose flour (Weizenmehl Type 405)", 150, "g"], ["Fine granulated sugar", 22, "g"], ["Vanilla sugar (Vanillezucker), 1 sachet of about 8 g", 1, "piece"], ["Fine salt", 0.25, "tsp"], ["Eggs", 3, "piece"], ["Milk", 500, "ml"], ["Unsalted butter, melted and cooled", 40, "g"], ["Butter or neutral oil, for the pan", 1, "tsp"]]], ["Whipped cream filling", [["Heavy cream (Schlagsahne, at least 30% fat), very cold", 500, "ml"], ["Powdered sugar (Puderzucker)", 32, "g"], ["Vanilla sugar (Vanillezucker), 1 sachet of about 8 g", 1, "piece"], ["Cream stabilizer (Sahnesteif), optional but helpful", 1, "piece"]]], ["To finish", [["Powdered sugar, for dusting", 1, "tbsp"]]]], "steps": ["In a large bowl, whisk the eggs, milk, sugar, vanilla sugar and salt together for about 30 seconds, until smooth. Sift in the flour in two additions, whisking after each, for about 1 minute, until there are no lumps. Whisk in the cooled melted butter. Pour the batter through a sieve into a jug, to catch any lumps. Cover and refrigerate for at least 1 hour, or overnight. Resting lets the flour absorb the liquid, so the crêpes come out thin and tender, and not rubbery.", "Take the batter out of the fridge 15 minutes before cooking and stir it well, because it separates as it rests. It should pour like single cream. If it feels thicker, whisk in 1–2 tablespoons of milk. Line a large plate with baking paper to hold the finished crêpes.", "Heat a small non-stick pan (about 16–18 cm) over medium-low heat for 1 minute, and brush it very lightly with butter or oil, just for the first crêpe and again only when the crêpes start to stick. Stir the batter, then pour in about 30 ml (2 tablespoons) of batter, which is a small ladle filled about two-thirds, an espresso cup filled halfway, or 2 heaped soup spoons, and tilt the pan so the batter spreads in a thin, even layer. Cook for about 45–60 seconds, until the surface looks matte and dry and the edges lift easily. Flip with a thin spatula (or your fingers) and cook for 15–20 seconds, until the other side is just pale golden. Slide the crêpe onto the plate. Stir the batter before every crêpe. You will get about 24 crêpes, and you need 20, so the first one or two can be for practice and snacks.", "Let the crêpes cool completely, about 20 minutes, until they no longer feel warm, because warm crêpes will melt the cream. Choose the 20 best-looking crêpes, and keep the prettiest one for the top.", "Put the very cold cream, powdered sugar and vanilla sugar in a chilled bowl (put the bowl and beaters in the fridge for 15 minutes beforehand). If you are using the stabilizer, mix it with the powdered sugar first, and sprinkle it in once the cream starts to thicken. Start the hand mixer on the lowest speed for 15 seconds so that it doesn’t splatter, then switch to medium speed, moving the beaters around the bowl. Near the end, check the cream every 20 seconds by switching the mixer off and lifting the beaters. The times are rough guides, so go by what the cream looks like.<br><b>1. Still liquid (the first minute):</b> bubbly and thin like milk. Keep going.<br><b>2. Thickened (about 1½ minutes):</b> the beaters leave trails in the cream, but it is still soft and drips off the beaters. Keep going.<br><b>3. Soft peaks (about 2–2½ minutes):</b> when you lift the beaters, the cream forms a peak that flops completely over. Still too soft for the cake, so keep going.<br><b>4. Medium peaks (about 3 minutes), stop here:</b> the peak stands up but the tip curls over like a bent hook, and the cream is smooth and glossy. Tilt the bowl, and the cream should not slide. This is the perfect stage for spreading.<br><b>5. Stiff peaks:</b> the peak stands straight up and the cream looks matte and thick. It still works, but it is harder to spread thinly. Stir in 1 tablespoon of cold cream or milk by hand to loosen it.<br><b>6. Over-whipped:</b> the cream looks grainy, lumpy or slightly yellow, and starts to separate. If you have only just reached this point, fold in 2–3 tablespoons of cold unwhipped cream with a spatula, which often rescues it. If it has turned into butter and liquid, it cannot be saved, so keep a little extra cream in the fridge just in case. A stabilizer makes the cream stiffen faster, so check more often.", "Place one crêpe in the center of a flat plate, with a damp paper towel or a non-slip mat under the plate so that it doesn’t slide. You don’t need a turntable. Put about 2 heaped soup spoons (about 30 ml) of cream in the middle of the crêpe. Using a flexible rubber spatula or the back of a spoon, spread the cream outward in a spiral from the center until it nearly reaches the edge, and turn the plate a quarter turn by hand every few strokes. A round-tipped butter knife is useful for smoothing the cream and tidying the edge. Aim for a layer about 2 mm thick. Lay the next crêpe on top, press down gently with your palm, and repeat until you have used 19 crêpes and 19 layers of cream. Divide the cream in your head into about 19 portions: when the bowl is half empty, you should be about halfway up the cake. Every 5–6 layers, slide the plate into the fridge for 10 minutes, so that the cream firms up and the layers stop sliding. Finish with the prettiest crêpe on top, with no cream. Don’t worry if the sides are a little uneven, because powdered sugar on top and a clean cut at the end make it look neat.", "Cover the cake loosely with plastic wrap and refrigerate it for at least 3 hours, or overnight, until the cream is firm and the cake holds together when cut. Dust the top with powdered sugar just before serving. Slice with a long, sharp knife, wiping the blade clean between cuts."], "foot": "Base amounts make one cake of 20 layers with a small 16–18 cm pan, serving 8–10. Keep the cake in the fridge and eat it within 2 days. Cocoa or matcha can replace 2 tablespoons of the flour in the batter for other flavors.", "scalenote": "For more cakes, make the batter in one large batch if your bowl is big enough, and keep the cream cold until the moment you assemble."};
+function fmt(x){
+  if(x>=10) return String(Math.round(x));
+  var r=Math.round(x*4)/4,w=Math.floor(r),f=r-w,fr={0:"",0.25:"¼",0.5:"½",0.75:"¾"}[f];
+  if(w===0&&fr==="") return "a pinch";
+  return (w?w:"")+fr;
+}
+function amt(v,u){
+  if(u==="g") return v>=1000?(Math.round(v/10)/100)+" kg":Math.round(v)+" g";
+  if(u==="ml") return v>=1000?(Math.round(v/10)/100)+" L":Math.round(v/5)*5+" ml";
+  if(u==="tbsp") return v>=8?(Math.round(v/16*4)/4)+" cup":fmt(v)+" tbsp";
+  if(u==="tsp") return v>=3?fmt(v/3)+" tbsp":fmt(v)+" tsp";
+  if(u==="piece") return String(Math.max(1,Math.round(v)));
+  if(u==="cup") return fmt(v)+(v>1?" cups":" cup");
+  return fmt(v)+" "+u;
+}
+var $=function(i){return document.getElementById(i)};
+$("tag").textContent=R.tag;$("title").textContent=R.title;$("sub").textContent=R.sub;
+$("meta").innerHTML=R.meta.map(function(m){return "<span>"+m+"</span>"}).join("");
+$("lbl").textContent=R.label;$("n").value=R.base;
+$("steps").innerHTML=R.steps.map(function(s){return "<li><p>"+s+"</p></li>"}).join("");
+$("foot").textContent=R.foot||"";
+function render(){
+  var n=parseInt($("n").value,10);if(!n||n<1)n=1;if(n>200)n=200;
+  var k=n/R.base;
+  $("ings").innerHTML=R.groups.map(function(g){
+    return "<h3>"+g[0]+"</h3><ul>"+g[1].map(function(i){
+      return '<li class="ing"><span>'+i[0]+'</span><span class="amt">'+amt(i[1]*k,i[2])+"</span></li>"}).join("")+"</ul>";
+  }).join("");
+  $("scalenote").textContent=(R.scalenote&&n>R.base)?R.scalenote:"";
+}
+$("minus").onclick=function(){$("n").value=Math.max(1,(parseInt($("n").value,10)||R.base)-R.step);render()};
+$("plus").onclick=function(){$("n").value=Math.min(200,(parseInt($("n").value,10)||R.base)+R.step);render()};
+$("n").oninput=render;render();
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Day 23 · Signature Spicy Hotpot</title>
+<style>
+:root{--bg:#faf6f0;--card:#fff;--text:#2a2420;--muted:#7a6f66;--accent:#b3261e;--green:#2f5d3a;--line:#e8dfd3;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1917;--card:#27221f;--text:#f3ece4;--muted:#b0a498;--accent:#ef8a80;--green:#8fc79b;--line:#3a332e;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+.tag{font:600 12px/1 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:2rem;margin:.4rem 0 .2rem;line-height:1.15}
+.sub{color:var(--muted);margin:0 0 1rem}
+.meta{display:flex;gap:16px;font:14px system-ui,sans-serif;color:var(--muted);margin-bottom:18px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
+h2{font-size:1.2rem;margin:0 0 10px}
+h3{font:600 12px system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin:14px 0 6px}
+.srv{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:system-ui,sans-serif}
+.stepper{display:flex;align-items:center;gap:8px}
+.stepper button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:20px;cursor:pointer}
+.stepper input{width:64px;height:40px;text-align:center;font-size:18px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text)}
+ul{list-style:none;margin:0;padding:0}
+li.ing{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line)}
+li.ing:last-child{border:0}
+.amt{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+ol{list-style:none;counter-reset:s;margin:0;padding:0}
+ol li{counter-increment:s;position:relative;padding:0 0 16px 44px}
+ol li::before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font:700 14px/30px system-ui,sans-serif;text-align:center}
+ol li p{margin:0}
+.note{font:13px system-ui,sans-serif;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <div class="tag" id="tag"></div>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <div class="meta" id="meta"></div>
+  <section class="srv">
+    <strong id="lbl">Servings</strong>
+    <div class="stepper">
+      <button id="minus" aria-label="Decrease">−</button>
+      <input id="n" type="number" min="1" max="200" inputmode="numeric">
+      <button id="plus" aria-label="Increase">+</button>
+    </div>
+  </section>
+  <section><h2>Ingredients</h2><div id="ings"></div><p class="note" id="scalenote"></p></section>
+  <section><h2>Method</h2><ol id="steps"></ol></section>
+  <p class="note" id="foot"></p>
+</main>
+<script>
+var R={"tag": "Day 23 · Soup", "title": "Signature Spicy Hotpot", "sub": "A hotpot broth that blends mala hotpot base with Japanese ramen soup, adjusted to a gentle spice level, with lots of things to cook in it.", "meta": ["Prep 40 min", "Cook 25 min, then eat slowly"], "label": "Servings", "base": 4, "step": 2, "groups": [["Broth", [["Ready-to-use ramen soup: Marutomo shoyu ramen concentrate, diluted with water as the bottle says", 1700, "ml"], ["Mala hotpot base (麻辣火锅底料), from Go Asia, to taste", 1, "tbsp"]]], ["Hard vegetables (cook first)", [["Lotus root, sliced 3 mm thick", 200, "g"], ["Corn on the cob, cut into 4 cm rounds", 2, "piece"], ["Potatoes, sliced 5 mm thick", 200, "g"], ["Cauliflower florets (Blumenkohl)", 200, "g"], ["Canned water chestnuts (Wasserkastanien), drained", 150, "g"], ["Dried wood ear mushrooms (Mu-Err-Pilze), soaked until soft", 15, "g"], ["Tomatoes, cut into wedges", 300, "g"]]], ["Proteins (choose a few)", [["Thinly sliced beef or lamb (hot pot slices)", 300, "g"], ["Shrimp, peeled", 200, "g"], ["Firm white fish fillet, cut into 4 cm pieces", 200, "g"], ["Mixed hot pot balls (fish balls and similar), from an Asian store", 200, "g"], ["Shrimp paste or fish paste", 150, "g"], ["Eggs", 4, "piece"]]], ["Tofu, noodles & greens", [["Soft tofu (weicher Tofu), cut into 3 cm cubes", 300, "g"], ["Dried tofu skin sticks (腐竹), soaked until soft", 50, "g"], ["Korean sweet potato noodles (Glasnudeln), soaked 30 min", 100, "g"], ["Korean rice cakes (tteok)", 200, "g"], ["Chinese cabbage (Chinakohl) and other leafy greens, cut into large pieces", 300, "g"]]]], "steps": ["Prepare the ingredients. Soak the wood ear mushrooms in warm water for 20–30 minutes, until soft, then cut off any hard bits and tear them into pieces. Soak the tofu skin sticks in warm water for 30 minutes, until pliable, and cut them into 5 cm lengths. Soak the sweet potato noodles in warm water for 30 minutes, until flexible. Slice the lotus root and potatoes. Arrange everything on plates by cooking time, with the hard vegetables on one plate, and the proteins, tofu and greens on others.", "Mix the Marutomo ramen concentrate with water in the pot you will use for the hotpot, following the dilution on the bottle, until you have about 1.7 L of ready-to-use soup. Heat it over medium heat until it starts to simmer.", "Stir in 1 tablespoon of the mala hotpot base. Simmer for 5 minutes. Taste. For more heat, stir in another teaspoon of the mala base and taste again, adding a teaspoon at a time. If it gets too spicy, add a splash of hot water. The ramen soup and the mala base are both salty, so do not add any soy sauce or extra salt.", "Turn the heat to low. Bring the pot to the table, and keep it at a gentle simmer while you cook.", "Cook the ingredients in rounds, starting with the ones that need the most time. <b>Round 1, hard vegetables (8–12 minutes):</b> lotus root, corn, potato, cauliflower and wood ear, until a fork slides in easily. <b>Round 2:</b> tomatoes (4–5 minutes, until soft), tofu skin sticks (4–5 minutes), water chestnuts (3 minutes), mixed hot pot balls (4–5 minutes, until they float and are hot in the middle), and spoonfuls of shrimp or fish paste (3–4 minutes, until they float and are firm). <b>Round 3:</b> sweet potato noodles (5–7 minutes, until soft and chewy), rice cakes (3–5 minutes, until soft and floating), soft tofu (3 minutes, until hot), and an egg cracked into the simmering broth (3–4 minutes, until the white is set). <b>Round 4, quick-cooking:</b> shrimp (2–3 minutes, until pink and curled), fish (3–4 minutes, until opaque all the way through), sliced meat (30–60 seconds, until the color changes), and greens (1–2 minutes, until wilted).", "As the broth reduces, top it up with hot water or ramen broth, and taste it now and then. If it has become too salty, add water, and if it has become too weak, add a little more ramen soup or mala base."], "foot": "Base amounts are for 4 servings, with about 1.7 L of broth. You don’t need every ingredient: choose 5–7 you like, with a mix of vegetables, 2–3 proteins, and one starch such as noodles or rice cakes. Mala hotpot base is spicy and salty, so start with 1 tablespoon and add more only if you like.", "scalenote": "For more than 8 servings, use a very large pot, or two pots at the table."};
+function fmt(x){
+  if(x>=10) return String(Math.round(x));
+  var r=Math.round(x*4)/4,w=Math.floor(r),f=r-w,fr={0:"",0.25:"¼",0.5:"½",0.75:"¾"}[f];
+  if(w===0&&fr==="") return "a pinch";
+  return (w?w:"")+fr;
+}
+function amt(v,u){
+  if(u==="g") return v>=1000?(Math.round(v/10)/100)+" kg":Math.round(v)+" g";
+  if(u==="ml") return v>=1000?(Math.round(v/10)/100)+" L":Math.round(v/5)*5+" ml";
+  if(u==="tbsp") return v>=8?(Math.round(v/16*4)/4)+" cup":fmt(v)+" tbsp";
+  if(u==="tsp") return v>=3?fmt(v/3)+" tbsp":fmt(v)+" tsp";
+  if(u==="piece") return String(Math.max(1,Math.round(v)));
+  if(u==="cup") return fmt(v)+(v>1?" cups":" cup");
+  return fmt(v)+" "+u;
+}
+var $=function(i){return document.getElementById(i)};
+$("tag").textContent=R.tag;$("title").textContent=R.title;$("sub").textContent=R.sub;
+$("meta").innerHTML=R.meta.map(function(m){return "<span>"+m+"</span>"}).join("");
+$("lbl").textContent=R.label;$("n").value=R.base;
+$("steps").innerHTML=R.steps.map(function(s){return "<li><p>"+s+"</p></li>"}).join("");
+$("foot").textContent=R.foot||"";
+function render(){
+  var n=parseInt($("n").value,10);if(!n||n<1)n=1;if(n>200)n=200;
+  var k=n/R.base;
+  $("ings").innerHTML=R.groups.map(function(g){
+    return "<h3>"+g[0]+"</h3><ul>"+g[1].map(function(i){
+      return '<li class="ing"><span>'+i[0]+'</span><span class="amt">'+amt(i[1]*k,i[2])+"</span></li>"}).join("")+"</ul>";
+  }).join("");
+  $("scalenote").textContent=(R.scalenote&&n>R.base)?R.scalenote:"";
+}
+$("minus").onclick=function(){$("n").value=Math.max(1,(parseInt($("n").value,10)||R.base)-R.step);render()};
+$("plus").onclick=function(){$("n").value=Math.min(200,(parseInt($("n").value,10)||R.base)+R.step);render()};
+$("n").oninput=render;render();
+</script>
+</body>
+</html>
